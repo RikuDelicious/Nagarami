@@ -1,0 +1,76 @@
+﻿<Window x:Class="Nagarami.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nagarami"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="Nagarami" Width="800" Closed="Window_Closed" SizeToContent="Height"
+        LocationChanged="Window_LocationChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0" Header="Settings" SizeChanged="SettingsExpander_SizeChanged">
+            <StackPanel Orientation="Vertical" Margin="5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="Channel:" VerticalAlignment="Center" HorizontalContentAlignment="Left" Padding="0"/>
+                    <TextBox x:Name="channelTextBox" Grid.Column="1" VerticalAlignment="Center" Margin="5,0"/>
+                    <Button Grid.Column="2" Content="Go" Click="ChannelSelectButton_Click"/>
+                </Grid>
+                <CheckBox Content="ウィンドウを前面に固定する" VerticalAlignment="Center"
+                          IsChecked="{Binding Topmost, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"/>
+                <CheckBox Content="チャットを表示する" VerticalAlignment="Center"
+                          Checked="ShowChat_Checked" Unchecked="ShowChat_Unchecked"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="チャットの背景色:"/>
+                    <xctk:ColorPicker x:Name="chatBackgroundColorPicker" Width="100" HorizontalAlignment="Left"
+                                      SelectedColorChanged="ChatBackgroundColorPicker_SelectedColorChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="チャットの表示位置:"/>
+                    <Label Content="左"/>
+                    <Slider x:Name="chatAreaCanvasLeft" Width="100" ValueChanged="ChatAreaCanvasLeft_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
+                    <Label Content="上"/>
+                    <Slider x:Name="chatAreaCanvasTop" Width="100" ValueChanged="ChatAreaCanvasTop_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
+                    <Label Content="右"/>
+                    <Slider x:Name="chatAreaCanvasRight" Width="100" ValueChanged="ChatAreaCanvasRight_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
+                    <Label Content="下"/>
+                    <Slider x:Name="chatAreaCanvasBottom" Width="100" ValueChanged="ChatAreaCanvasBottom_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
+                </StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="チャットエリアの横幅"/>
+                    <Slider Grid.Column="1" x:Name="chatAreaWidthSlider"
+                            Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"
+                            ValueChanged="ChatAreaWidthSlider_ValueChanged"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Content="チャットエリアの縦幅"/>
+                    <Slider Grid.Column="1" x:Name="chatAreaHeightSlider" MinWidth="100"
+                            Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"
+                            ValueChanged="ChatAreaHeightSlider_ValueChanged"/>
+                </Grid>
+                <Button Content="Chat Connect" Click="ChatConnectButton_Click"/>
+            </StackPanel>
+        </Expander>
+        <Grid x:Name="webViewWrapper" Grid.Row="1" SizeChanged="WebViewWrapper_SizeChanged">
+            <wv2:WebView2 Name="webView"/>
+        </Grid>
+    </Grid>
+</Window>
