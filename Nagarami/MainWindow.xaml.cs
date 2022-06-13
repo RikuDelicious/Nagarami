@@ -113,6 +113,14 @@ namespace Nagarami
             _chatWindow.Reposition();
         }
 
+        private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.HeightChanged)
+            {
+                _chatWindow.Reposition();
+            }
+        }
+
         private void ChatConnectButton_Click(object sender, RoutedEventArgs e)
         {
             _chatWindow.ConnectToChat();
