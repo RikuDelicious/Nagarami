@@ -35,17 +35,25 @@
                     <xctk:ColorPicker x:Name="chatBackgroundColorPicker" Width="100" HorizontalAlignment="Left"
                                       SelectedColorChanged="ChatBackgroundColorPicker_SelectedColorChanged"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <WrapPanel Orientation="Horizontal">
                     <Label Content="チャットの表示位置:"/>
-                    <Label Content="左"/>
-                    <Slider x:Name="chatAreaCanvasLeft" Width="100" ValueChanged="ChatAreaCanvasLeft_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
-                    <Label Content="上"/>
-                    <Slider x:Name="chatAreaCanvasTop" Width="100" ValueChanged="ChatAreaCanvasTop_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
-                    <Label Content="右"/>
-                    <Slider x:Name="chatAreaCanvasRight" Width="100" ValueChanged="ChatAreaCanvasRight_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
-                    <Label Content="下"/>
-                    <Slider x:Name="chatAreaCanvasBottom" Width="100" ValueChanged="ChatAreaCanvasBottom_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="左"/>
+                        <Slider x:Name="chatAreaCanvasLeft" Width="100" ValueChanged="ChatAreaCanvasLeft_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="上"/>
+                        <Slider x:Name="chatAreaCanvasTop" Width="100" ValueChanged="ChatAreaCanvasTop_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="右"/>
+                        <Slider x:Name="chatAreaCanvasRight" Width="100" ValueChanged="ChatAreaCanvasRight_ValueChanged" Maximum="{Binding ActualWidth, ElementName=webViewWrapper}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="下"/>
+                        <Slider x:Name="chatAreaCanvasBottom" Width="100" ValueChanged="ChatAreaCanvasBottom_ValueChanged" Maximum="{Binding ActualHeight, ElementName=webViewWrapper}"/>
+                    </StackPanel>
+                </WrapPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
