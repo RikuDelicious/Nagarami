@@ -49,7 +49,7 @@ namespace Nagarami
             }
         }
 
-        private double _chatAreaWidth = 200;
+        private double _chatAreaWidth;
         public double ChatAreaWidth {
             get => _chatAreaWidth;
             set
@@ -62,7 +62,7 @@ namespace Nagarami
                 
             }
         }
-        private double _chatAreaHeight = 100;
+        private double _chatAreaHeight;
         public double ChatAreaHeight
         {
             get => _chatAreaHeight;
@@ -96,6 +96,13 @@ namespace Nagarami
             this.Owner = _targetWindow;
             this.Topmost = _targetWindow.Topmost;
             _autoScroll = true;
+
+            // チャット表示の初期設定
+            ChatAreaWidth = _targetControl.ActualWidth / 3;
+            ChatAreaHeight = _targetControl.ActualHeight;
+            ChatAreaBackground = new SolidColorBrush(Color.FromArgb(118, 171, 171, 171));
+            chatArea.SetValue(Canvas.LeftProperty, DependencyProperty.UnsetValue);
+            Canvas.SetRight(chatArea, 0);
         }
 
         public void Reposition()
